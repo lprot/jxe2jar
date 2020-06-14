@@ -332,8 +332,10 @@ def dump_romclass(stream, romclass):
     code_attr_name_index = cp.add(CONST.Utf8, 'Code')
     method_info_list = []
     for method in romclass.methods:
-        bytecode = transform_bytecode(bytearray(method.bytecode), cp)
-        bytecode = method.bytecode;
+        if (len(sys.argv) < 4):
+          bytecode = transform_bytecode(bytearray(method.bytecode), cp)
+        else:
+          bytecode = method.bytecode;
         method_info_list.append(
             {
                 'access_flags': method.modifier,
